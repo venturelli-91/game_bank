@@ -1,5 +1,6 @@
 "use client"
 
+import { memo } from 'react';
 import Image from 'next/image';
 import { useSpriteAnimation } from '@/shared/hooks/useSpriteAnimation';
 import { SymbolType } from '../types';
@@ -15,9 +16,9 @@ const SIZE_MAP = {
   sm: 'w-16 h-16',
   md: 'w-20 h-20',
   lg: 'w-24 h-24',
-};
+} as const;
 
-export const SlotSymbol = ({ symbol, animate = false, size = 'lg' }: SlotSymbolProps) => {
+const SlotSymbolComponent = ({ symbol, animate = false, size = 'lg' }: SlotSymbolProps) => {
   const { currentFrame } = useSpriteAnimation({
     frameCount: SYMBOL_FRAMES,
     frameDuration: 40,
@@ -39,3 +40,5 @@ export const SlotSymbol = ({ symbol, animate = false, size = 'lg' }: SlotSymbolP
     </div>
   );
 };
+
+export const SlotSymbol = memo(SlotSymbolComponent);
