@@ -30,4 +30,3 @@ export const WIN_THRESHOLDS = {
 } as const;
 
 export const SPIN_DURATION = 2000;
-export const REEL_DELAY = 150;
