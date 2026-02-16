@@ -9,7 +9,7 @@ interface DialogProps {
   children: React.ReactNode
 }
 
-const Dialog = ({ open, onOpenChange, children }: DialogProps) => {
+const Dialog = ({ open, children }: DialogProps) => {
   return open ? <div>{children}</div> : null
 }
 

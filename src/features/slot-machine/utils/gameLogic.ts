@@ -1,4 +1,4 @@
-import { SymbolType, SlotSymbol, WinResult, WinType } from '../types';
+import { SlotSymbol, WinResult, WinType } from '../types';
 import { SYMBOLS, WIN_THRESHOLDS } from './constants';
 
 export const generateRandomSymbol = (): SlotSymbol => {
