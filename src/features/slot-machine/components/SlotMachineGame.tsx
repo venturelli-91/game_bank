@@ -22,25 +22,25 @@ export const SlotMachineGame = () => {
     <div className="relative w-full h-screen overflow-hidden">
       <GameBackground />
 
-      <div className="relative z-10 flex flex-col items-center justify-between h-full py-8 px-4">
+      <div className="relative z-10 flex flex-col items-center justify-between h-full py-4 md:py-8 px-2 md:px-4">
         {/* Header */}
-        <div className="flex items-center justify-between w-full max-w-6xl">
-          <div className="text-2xl font-black text-yellow-500 uppercase tracking-wider bg-black/50 px-6 py-2 rounded-lg border-2 border-yellow-600/50">
+        <div className="flex items-center justify-between w-full max-w-7xl px-2">
+          <div className="text-lg md:text-2xl font-black text-yellow-500 uppercase tracking-wider bg-black/70 px-3 md:px-6 py-1.5 md:py-2 rounded-lg border-2 border-yellow-600/60 shadow-lg">
             VAULT #1
           </div>
-          <div className="text-4xl md:text-5xl font-black uppercase tracking-wider">
-            <span className="text-yellow-500 drop-shadow-[0_0_15px_rgba(234,179,8,0.8)]">
+          <div className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-wider">
+            <span className="text-yellow-500 drop-shadow-[0_0_20px_rgba(234,179,8,0.9)]">
               GAME
             </span>
-            <span className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">
+            <span className="text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]">
               {' '}LOGO
             </span>
           </div>
-          <div className="w-32" /> {/* Spacer for balance */}
+          <div className="w-20 md:w-32" />
         </div>
 
         {/* Slot Machine */}
-        <div className="flex-1 flex items-center justify-center">
+        <div className="flex-1 flex items-center justify-center w-full max-w-7xl">
           <SlotGrid
             reels={gameState.reels}
             isSpinning={gameState.isSpinning}
@@ -48,15 +48,17 @@ export const SlotMachineGame = () => {
         </div>
 
         {/* Controls */}
-        <GameControls
-          balance={gameState.balance}
-          win={gameState.win}
-          bet={gameState.bet}
-          isSpinning={gameState.isSpinning}
-          onIncreaseBet={increaseBet}
-          onDecreaseBet={decreaseBet}
-          onSpin={spin}
-        />
+        <div className="w-full">
+          <GameControls
+            balance={gameState.balance}
+            win={gameState.win}
+            bet={gameState.bet}
+            isSpinning={gameState.isSpinning}
+            onIncreaseBet={increaseBet}
+            onDecreaseBet={decreaseBet}
+            onSpin={spin}
+          />
+        </div>
       </div>
 
       <FoxCharacter />
