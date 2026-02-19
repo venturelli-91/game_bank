@@ -1,7 +1,7 @@
 import { SymbolType } from '../types';
 
-export const REELS = 5;
-export const ROWS = 3;
+export const REELS = 6;
+export const ROWS = 5;
 
 export const MIN_BET = 100;
 export const MAX_BET = 10000;

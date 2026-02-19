@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useCallback } from 'react';
-import { GameState } from '../types';
+import { useState, useCallback, useEffect } from 'react';
+import { GameState, SlotSymbol } from '../types';
 import { generateReels, calculateWin } from '../utils/gameLogic';
 import {
   REELS,
@@ -13,15 +13,34 @@ import {
   SPIN_DURATION,
 } from '../utils/constants';
 
+// Generate fixed initial reels to prevent hydration mismatch
+const getInitialReels = (reels: number, rows: number): SlotSymbol[][] => {
+  const symbols = ['bank', 'safe', 'dynamite', 'handcuffs', 'cell'];
+  return Array.from({ length: reels }, (_, reelIdx) =>
+    Array.from({ length: rows }, (_, rowIdx) => ({
+      type: symbols[(reelIdx + rowIdx) % symbols.length] as any,
+      id: `initial-${reelIdx}-${rowIdx}`,
+    }))
+  );
+};
+
 export const useSlotMachine = () => {
   const [gameState, setGameState] = useState<GameState>({
     balance: INITIAL_BALANCE,
     bet: MIN_BET,
     win: 0,
     isSpinning: false,
-    reels: generateReels(REELS, ROWS),
+    reels: getInitialReels(REELS, ROWS),
     winType: 'none',
   });
+
+  // Randomize reels after hydration on client-side only
+  useEffect(() => {
+    setGameState((prev) => ({
+      ...prev,
+      reels: generateReels(REELS, ROWS),
+    }));
+  }, []);
 
   const increaseBet = useCallback(() => {
     setGameState((prev) => ({
@@ -62,10 +81,22 @@ export const useSlotMachine = () => {
     }, SPIN_DURATION);
   }, [gameState.isSpinning, gameState.balance, gameState.bet]);
 
+  const resetGame = useCallback(() => {
+    setGameState({
+      balance: INITIAL_BALANCE,
+      bet: MIN_BET,
+      win: 0,
+      isSpinning: false,
+      reels: generateReels(REELS, ROWS),
+      winType: 'none',
+    });
+  }, []);
+
   return {
     gameState,
     increaseBet,
     decreaseBet,
     spin,
+    resetGame,
   };
 };
