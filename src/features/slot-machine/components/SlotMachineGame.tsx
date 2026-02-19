@@ -85,7 +85,7 @@ export const SlotMachineGame = () => {
 						</div>
 						<button
 							onClick={resetGame}
-							className="px-10 py-4 rounded-xl bg-green-500 hover:bg-green-400 active:scale-95 text-white font-black text-xl uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(34,197,94,0.5)]">
+							className="cursor-pointer px-10 py-4 rounded-xl bg-green-500 hover:bg-green-400 active:scale-95 text-white font-black text-xl uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(34,197,94,0.5)]">
 							Play Again
 						</button>
 					</div>
@@ -121,7 +121,7 @@ export const SlotMachineGame = () => {
 						<button
 							onClick={decreaseBet}
 							disabled={isSpinning}
-							className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white font-black text-xl disabled:opacity-40 transition-colors">
+							className="cursor-pointer w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white font-black text-xl disabled:opacity-40 disabled:cursor-not-allowed transition-colors">
 							−
 						</button>
 						<div className="text-center min-w-[80px]">
@@ -133,7 +133,7 @@ export const SlotMachineGame = () => {
 						<button
 							onClick={increaseBet}
 							disabled={isSpinning}
-							className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white font-black text-xl disabled:opacity-40 transition-colors">
+							className="cursor-pointer w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white font-black text-xl disabled:opacity-40 disabled:cursor-not-allowed transition-colors">
 							+
 						</button>
 					</div>
@@ -142,7 +142,7 @@ export const SlotMachineGame = () => {
 					<button
 						onClick={spin}
 						disabled={isSpinning || balance < bet}
-						className="px-8 py-3 rounded-xl bg-red-500 hover:bg-red-400 active:scale-95 text-white font-black text-lg uppercase tracking-wider disabled:opacity-50 transition-all shadow-[0_0_20px_rgba(239,68,68,0.5)]">
+						className="cursor-pointer px-8 py-3 rounded-xl bg-red-500 hover:bg-red-400 active:scale-95 text-white font-black text-lg uppercase tracking-wider disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-[0_0_20px_rgba(239,68,68,0.5)]">
 						{isSpinning ? "Spinning..." : "Spin"}
 					</button>
 				</div>
